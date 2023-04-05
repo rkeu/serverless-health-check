@@ -1,0 +1,29 @@
+{
+  "name": "@rkeu/serverless-health-check",
+  "version": "1.0.0",
+  "description": "For when you don't want a server, but do want a health check!",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rkeu/serverless-health-check.git"
+  },
+  "keywords": [
+    "health",
+    "check"
+  ],
+  "author": "rkeu",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/rkeu/serverless-health-check/issues"
+  },
+  "homepage": "https://github.com/rkeu/serverless-health-check#readme",
+  "dependencies": {
+    "find-process": "^1.4.7"
+  },
+  "devDependencies": {
+    "jest": "^29.5.0"
+  }
+}
