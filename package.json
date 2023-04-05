@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "For when you don't want a server, but do want a health check!",
   "main": "index.js",
+  "bin": {
+    "ready": "./ready"
+  },
   "scripts": {
     "test": "jest"
   },

@@ -1,0 +1,38 @@
+#!/usr/bin/env -S NODE_ENV=production node
+
+const { signal } = require('..')
+
+process.title = 'ready'
+
+process.on('SIGPIPE', () => process.exit())
+process.on('SIGINT', () => process.exit(3))
+
+const program = process.argv[2]
+const sleep = process.argv[3] ? parseInt(process.argv[3], 10) : 1000
+const usage = `
+USAGE
+  ready "pname" [timeout]
+
+DESCRIPTION
+  Signal a program to check if it is running properly (i.e. "ready").
+
+OPTIONS
+  pname   executable name of the program to check (required)
+  timeout maximum time for program to respond, default 1s (optional)
+`
+
+if (!program) {
+  process.exitCode = 4
+  console.error('ERROR: missing required target program name argument')
+  console.log(usage)
+} else if (!Number.isSafeInteger(sleep)) {
+  process.exitCode = 4
+  console.error('ERROR: timeout argument must be a number of millis')
+  console.log(usage)
+} else {
+  (() => {
+    signal(program, 'SIGPIPE')
+    require('node:timers/promises').setTimeout(sleep)
+      .then(() => process.exit(2))
+  })()
+}
