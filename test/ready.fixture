@@ -1,0 +1,23 @@
+#!/usr/bin/env -S NODE_ENV=production node
+
+const  { readinessCheck } = require('..')
+
+const echo = signal => {
+  console.log(`signal=${signal}`)
+  process.exit()
+}
+
+process.title = 'ready.fixture'
+process.on('SIGINT', echo)
+
+const readiness = process.argv[2]
+if (readiness === 'wait') ; // do nothing when signalled, just wait
+else if (readiness) readinessCheck(async () => 'ready' === readiness)
+else process.on('SIGPIPE', echo)
+
+require('node:timers/promises')
+  .setTimeout(1000)
+  .then(() => {
+    console.error('ERROR: no signal received!')
+    process.exit(2)
+  })
