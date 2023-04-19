@@ -20,7 +20,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14.x, 16.x, 18.x]
+        node-version: [16.x, 18.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
@@ -40,12 +40,12 @@ jobs:
       run: npm it
 
     - name: Publish (dry run)
-      if: ${{ github.event_name == 'pull_request' && matrix.node-version == '14.x' }}
+      if: ${{ github.event_name == 'pull_request' && matrix.node-version == '16.x' }}
       run: |
         echo Checking version...
         [ $(npm show `npm pkg get name | tr -d '"'` version) != $(npm pkg get version | tr -d '"') ]
         npm publish --dry-run
 
     - name: Publish
-      if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' && matrix.node-version == '14.x' }}
+      if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' && matrix.node-version == '16.x' }}
       run: npm publish
