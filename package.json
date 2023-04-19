@@ -6,6 +6,10 @@
   "bin": {
     "ready": "./ready"
   },
+  "files": [
+    "bin",
+    "index.js"
+  ],
   "scripts": {
     "test": "jest"
   },
@@ -14,8 +18,8 @@
     "url": "git+https://github.com/rkeu/serverless-health-check.git"
   },
   "keywords": [
-    "health",
-    "check"
+    "healthcheck",
+    "readiness"
   ],
   "author": "rkeu",
   "license": "GPL-3.0-or-later",
