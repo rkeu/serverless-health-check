@@ -1,7 +1,7 @@
 const sleep = require('node:timers/promises').setTimeout
 const util = require('node:util')
 const execFile = util.promisify(require('node:child_process').execFile)
-const  { signal, readinessCheck } = require('..')
+const { signal } = require('..')
 
 describe('serverless-health-check', () => {
 

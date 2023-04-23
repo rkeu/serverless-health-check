@@ -1,11 +1,15 @@
 {
   "name": "@rkeu/serverless-health-check",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "For when you don't want a server, but do want a health check!",
   "main": "index.js",
   "bin": {
     "ready": "./ready"
   },
+  "files": [
+    "bin",
+    "index.js"
+  ],
   "scripts": {
     "test": "jest"
   },
@@ -13,9 +17,12 @@
     "type": "git",
     "url": "git+https://github.com/rkeu/serverless-health-check.git"
   },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "keywords": [
-    "health",
-    "check"
+    "healthcheck",
+    "readiness"
   ],
   "author": "rkeu",
   "license": "GPL-3.0-or-later",
