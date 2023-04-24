@@ -41,10 +41,13 @@ jobs:
 
     - name: Publish (dry run)
       if: ${{ github.event_name == 'pull_request' && matrix.node-version == '16.x' }}
-      run: npm publish --dry-run
-        # echo Checking version...
-        # [ $(npm show `npm pkg get name | tr -d '"'` version) != $(npm pkg get version | tr -d '"') ]
+      uses: JS-DevTools/npm-publish@v2
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        dry-run: true
 
     - name: Publish
       if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && matrix.node-version == '16.x' }}
-      run: npm publish
+      uses: JS-DevTools/npm-publish@v2
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
